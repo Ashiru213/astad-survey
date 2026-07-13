@@ -14,10 +14,10 @@ const item = {
 
 export function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-primary text-primary-foreground">
+    <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-royal text-primary-foreground">
       <div className="absolute inset-0">
         <img src={heroImg} alt="Survey engineer operating a robotic total station on a construction site" width={1920} height={1280} className="h-full w-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/85 to-royal/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-royal via-royal/85 to-primary/70" />
       </div>
       <AnimatedBackground variant="hero" />
 
