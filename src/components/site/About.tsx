@@ -1,6 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
-import galleryConstruction from "@/assets/gallery-construction.jpg";
-import galleryRoad from "@/assets/gallery-road.jpg";
+import bigbro from "@/assets/bigbro.jpg.asset.json";
+import mybro from "@/assets/mybro.jpg.asset.json";
 import { STATS } from "@/lib/site-data";
 import { Counter, Reveal, SectionHeading } from "./primitives";
 
@@ -24,10 +24,10 @@ export function About() {
         <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal className="relative">
             <div className="relative overflow-hidden rounded-3xl">
-              <img src={galleryRoad} alt="Survey engineers working on-site" width={900} height={700} loading="lazy" className="w-full object-cover" />
+              <img src={bigbro.url} alt="ASTAD surveyor operating a total station on-site" width={900} height={700} loading="lazy" className="w-full object-cover" />
             </div>
             <div className="absolute -bottom-8 -right-4 hidden w-56 overflow-hidden rounded-2xl border-4 border-background shadow-xl sm:block">
-              <img src={galleryConstruction} alt="Field data collection" width={900} height={800} loading="lazy" className="w-full object-cover" />
+              <img src={mybro.url} alt="ASTAD surveyor performing field data collection" width={900} height={800} loading="lazy" className="w-full object-cover" />
             </div>
             <div className="glass absolute -left-4 top-8 rounded-2xl px-5 py-3 shadow-lg">
               <p className="font-display text-2xl font-bold text-gold">10+ yrs</p>

@@ -1,18 +1,20 @@
 import { ZoomIn } from "lucide-react";
 import { motion } from "motion/react";
-import galleryConstruction from "@/assets/gallery-construction.jpg";
 import galleryGis from "@/assets/gallery-gis.jpg";
 import galleryLand from "@/assets/gallery-land.jpg";
-import galleryRoad from "@/assets/gallery-road.jpg";
+import bigbro from "@/assets/bigbro.jpg.asset.json";
+import yiii from "@/assets/yiii.jpg.asset.json";
+import hi from "@/assets/hi.jpg.asset.json";
+import blood from "@/assets/blood.jpg.asset.json";
 import { SectionHeading } from "./primitives";
 
 const ITEMS = [
   { img: galleryLand, title: "Land Mapping", span: "row-span-2" },
-  { img: galleryRoad, title: "Road Survey", span: "" },
+  { img: bigbro.url, title: "Road Survey", span: "" },
   { img: galleryGis, title: "GIS Mapping", span: "row-span-2" },
-  { img: galleryConstruction, title: "Construction Survey", span: "" },
-  { img: galleryRoad, title: "Boundary Survey", span: "" },
-  { img: galleryLand, title: "Drone Survey", span: "" },
+  { img: yiii.url, title: "Construction Survey", span: "" },
+  { img: hi.url, title: "Boundary Survey", span: "" },
+  { img: blood.url, title: "Drone Survey", span: "" },
 ];
 
 export function Gallery() {
