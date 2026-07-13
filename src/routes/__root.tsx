@@ -93,11 +93,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Professional land surveying, engineering surveying, GIS mapping and geospatial solutions across Nigeria.",
+          "ASTAD Survey delivers professional land surveying, engineering surveying, GIS mapping, geospatial analysis and construction layout across Nigeria.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "ASTAD Survey" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "ASTAD Survey — Precision Surveying & Geospatial Solutions" },
+      { name: "twitter:description", content: "ASTAD Survey delivers professional land surveying, engineering surveying, GIS mapping, geospatial analysis and construction layout across Nigeria." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9fc6d343-6d76-4675-b3ea-265e41a23654/id-preview-a38affd0--9e416001-540c-4552-8436-84095ea78fdf.lovable.app-1783954553237.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9fc6d343-6d76-4675-b3ea-265e41a23654/id-preview-a38affd0--9e416001-540c-4552-8436-84095ea78fdf.lovable.app-1783954553237.png" },
     ],
     links: [
       {
