@@ -23,11 +23,11 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 lg:px-8">
-        <a href="#home" className="flex min-w-0 items-center gap-2.5">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold to-[oklch(0.62_0.12_80)] text-primary-foreground shadow-md">
-            <Compass className="h-5 w-5" />
+        <a href="#home" className="flex min-w-0 items-center gap-3">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold to-[oklch(0.62_0.12_80)] text-primary-foreground shadow-md">
+            <Compass className="h-5.5 w-5.5" />
           </span>
-          <span className="truncate font-display text-lg font-bold tracking-tight">
+          <span className="truncate font-display text-xl font-bold tracking-tight text-primary drop-shadow-sm md:text-2xl">
             ASTAD <span className="text-gradient-gold">Survey</span>
           </span>
         </a>
