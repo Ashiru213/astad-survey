@@ -4,6 +4,42 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Poppins", sans-serif;
+
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-royal: var(--royal);
+  --color-survey: var(--survey);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pan-grid: pan-grid 20s linear infinite;
+  --animate-ping-slow: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-dash: dash 4s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes pan-grid {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 0.7; }
+  75%, 100% { transform: scale(2.6); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes dash {
+  to { stroke-dashoffset: -1000; }
+}
+
 /*
  * Design system definition.
  *
