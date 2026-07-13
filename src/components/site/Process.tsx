@@ -20,7 +20,7 @@ export function Process() {
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-70px" }}
-                transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] as const }}
                 className="relative"
               >
                 <span className="absolute -left-16 top-1 grid h-12 w-12 place-items-center rounded-full border-4 border-background bg-gradient-to-br from-gold to-[oklch(0.62_0.12_80)] font-display text-sm font-bold text-primary-foreground shadow-md">

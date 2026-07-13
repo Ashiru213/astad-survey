@@ -35,7 +35,7 @@ export function Testimonials() {
               initial={{ opacity: 0, x: dir * 60 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: dir * -60 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
               className="glass rounded-3xl p-8 text-center sm:p-12"
             >
               <Quote className="mx-auto h-10 w-10 text-gold/40" />
