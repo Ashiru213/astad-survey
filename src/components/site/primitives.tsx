@@ -11,6 +11,7 @@ export function Reveal({
   delay?: number;
   y?: number;
   className?: string;
+  center?: boolean;
 }) {
   return (
     <motion.div
