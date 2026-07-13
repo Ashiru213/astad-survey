@@ -11,7 +11,7 @@ const PINS = [
 
 export function MapSection() {
   return (
-    <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground">
+    <section id="projects" className="relative overflow-hidden bg-primary py-24 text-primary-foreground">
       <AnimatedBackground variant="map" />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 lg:items-center lg:px-8">
         <Reveal center={false}>
