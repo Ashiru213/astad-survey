@@ -77,14 +77,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ASTAD Survey — Precision Surveying & Geospatial Solutions" },
+      {
+        name: "description",
+        content:
+          "ASTAD Survey delivers professional land surveying, engineering surveying, GIS mapping, geospatial analysis and construction layout across Nigeria.",
+      },
+      { name: "author", content: "ASTAD Survey" },
+      {
+        name: "keywords",
+        content:
+          "land survey, engineering survey, GIS mapping, geospatial analysis, topographic survey, drone survey, Nigeria surveyors, Lagos, Oyo",
+      },
+      { property: "og:title", content: "ASTAD Survey — Precision Surveying & Geospatial Solutions" },
+      {
+        property: "og:description",
+        content:
+          "Professional land surveying, engineering surveying, GIS mapping and geospatial solutions across Nigeria.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "ASTAD Survey" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -92,6 +105,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        children: `(function(){try{var t=localStorage.getItem('astad-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+      },
     ],
   }),
   shellComponent: RootShell,
