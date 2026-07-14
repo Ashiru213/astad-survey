@@ -67,7 +67,7 @@ export const TESTIMONIALS = [
 ];
 
 export const FAQS = [
-  { q: "What areas do you cover?", a: "We operate across Nigeria, with primary offices in Agege, Lagos and Oyo, Oyo State. We mobilise nationwide for projects of all sizes." },
+  { q: "What areas do you cover?", a: "We operate across Nigeria from our office at Oshodi Berger, Lagos. We mobilise nationwide for projects of all sizes." },
   { q: "How long does a typical land survey take?", a: "Most residential land surveys are completed within 3-7 working days, depending on site size, access and the type of deliverable required." },
   { q: "Do you provide certified survey plans?", a: "Yes. All our plans are prepared and certified by licensed surveyors and comply with statutory and regulatory standards." },
   { q: "What equipment do you use?", a: "We use Leica robotic total stations, Trimble GNSS RTK receivers, Topcon instruments, digital levels and survey-grade drones for aerial mapping." },
@@ -80,5 +80,5 @@ export const CONTACT = {
   phone: "07069320057",
   phoneIntl: "2347069320057",
   email: "info@astadsurvey.com",
-  locations: ["Agege, Lagos", "Oyo, Oyo State, Nigeria"],
+  locations: ["Oshodi Berger, Lagos, Nigeria"],
 };

@@ -26,7 +26,7 @@ export function About() {
             <div className="relative overflow-hidden rounded-3xl">
               <img src={bigbro.url} alt="ASTAD surveyor operating a total station on-site" width={900} height={700} loading="lazy" className="w-full object-cover" />
             </div>
-            <div className="absolute -bottom-8 -right-4 hidden w-56 overflow-hidden rounded-2xl border-4 border-background shadow-xl sm:block">
+            <div className="absolute -bottom-8 -right-4 w-40 overflow-hidden rounded-2xl border-4 border-background shadow-xl sm:w-56">
               <img src={mybro.url} alt="ASTAD surveyor performing field data collection" width={900} height={800} loading="lazy" className="w-full object-cover" />
             </div>
             <div className="glass absolute -left-4 top-8 rounded-2xl px-5 py-3 shadow-lg">

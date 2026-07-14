@@ -28,10 +28,12 @@ export const Route = createFileRoute("/")({
             "Professional land surveying, engineering surveying, GIS mapping and geospatial solutions across Nigeria.",
           telephone: "+2347069320057",
           areaServed: "Nigeria",
-          address: [
-            { "@type": "PostalAddress", addressLocality: "Agege", addressRegion: "Lagos", addressCountry: "NG" },
-            { "@type": "PostalAddress", addressLocality: "Oyo", addressRegion: "Oyo State", addressCountry: "NG" },
-          ],
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Oshodi Berger",
+            addressLocality: "Lagos",
+            addressCountry: "NG",
+          },
         }),
       },
     ],
