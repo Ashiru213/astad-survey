@@ -55,8 +55,8 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-5 py-6 text-center text-xs text-primary-foreground/60 lg:px-8">
-          © {new Date().getFullYear()} ASTAD Survey. All rights reserved. Precision • Accuracy • Trust.
+        <p className="mx-auto max-w-7xl px-5 py-6 text-center text-xs text-primary-foreground/70 lg:px-8">
+          © {new Date().getFullYear()} ASTAD Survey & Consultants. Delivering Accurate Geospatial Solutions.
         </p>
       </div>
     </footer>

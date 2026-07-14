@@ -58,7 +58,7 @@ export function Contact() {
                   <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(to right, oklch(0.78 0.13 85 / 0.3) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.78 0.13 85 / 0.3) 1px, transparent 1px)", backgroundSize: "26px 26px" }} />
                   <div className="relative text-center">
                     <MapPin className="mx-auto h-8 w-8 text-gold" />
-                    <p className="mt-1 text-sm font-medium">Oshodi Berger, Lagos</p>
+                    <p className="mt-1 text-sm font-medium">Ojodu Berger, Lagos</p>
                     <p className="text-xs text-muted-foreground">Google Map integration</p>
                   </div>
                 </div>

@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
           areaServed: "Nigeria",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Oshodi Berger",
+            streetAddress: "Ojodu Berger",
             addressLocality: "Lagos",
             addressCountry: "NG",
           },
