@@ -80,5 +80,5 @@ export const CONTACT = {
   phone: "07069320057",
   phoneIntl: "2347069320057",
   email: "info@astadsurvey.com",
-  locations: ["Agege, Lagos", "Oyo, Oyo State, Nigeria"],
+  locations: ["Oshodi Berger, Lagos, Nigeria"],
 };
