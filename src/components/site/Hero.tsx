@@ -14,34 +14,34 @@ const item = {
 
 export function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-gold text-foreground">
+    <section id="home" className="relative flex min-h-screen items-center overflow-hidden bg-background text-foreground">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Survey engineer operating a robotic total station on a construction site" width={1920} height={1280} className="h-full w-full object-cover opacity-90" />
-        <div className="absolute inset-0 bg-gradient-to-br from-gold/40 via-gold/20 to-transparent" />
+        <img src={heroImg} alt="Survey engineer operating a robotic total station on a construction site" width={1920} height={1280} className="h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/85 to-background/60" />
       </div>
       <AnimatedBackground variant="hero" />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 px-5 pt-28 pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8">
         <motion.div variants={container} initial="hidden" animate="show">
-          <motion.span variants={item} className="inline-flex items-center gap-2 rounded-full border border-black/30 bg-white/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-black backdrop-blur">
-            <Star className="h-3.5 w-3.5 fill-black text-black" /> Trusted Geospatial Experts in Nigeria
+          <motion.span variants={item} className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold backdrop-blur">
+            <Star className="h-3.5 w-3.5 fill-gold text-gold" /> Trusted Geospatial Experts in Nigeria
           </motion.span>
-          <motion.h1 variants={item} className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-black text-shadow-sm sm:text-5xl lg:text-6xl">
+          <motion.h1 variants={item} className="mt-6 font-display text-4xl font-bold leading-[1.08] tracking-tight text-gold text-shadow-sm sm:text-5xl lg:text-6xl">
             Precision Surveying.
             <br />
-            <span className="text-royal">Accurate Mapping.</span>
+            <span className="text-foreground">Accurate Mapping.</span>
             <br />
             Trusted Geospatial Solutions.
           </motion.h1>
-          <motion.p variants={item} className="mt-6 max-w-xl text-base font-medium leading-relaxed text-black/85 sm:text-lg">
+          <motion.p variants={item} className="mt-6 max-w-xl text-base font-medium leading-relaxed text-foreground/85 sm:text-lg">
             Providing professional land surveying, engineering surveying, GIS mapping, geospatial analysis, property mapping, construction layout and modern surveying solutions across Nigeria.
           </motion.p>
           <motion.div variants={item} className="mt-9 flex flex-wrap gap-4">
-            <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-black px-7 py-3.5 text-sm font-semibold text-gold shadow-lg shadow-black/30 transition-transform hover:scale-105">
+            <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold text-background shadow-lg shadow-gold/30 transition-transform hover:scale-105">
               Get Free Consultation
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-black/40 bg-white/40 px-7 py-3.5 text-sm font-semibold text-black backdrop-blur transition-colors hover:bg-white/70">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-colors hover:bg-white/10">
               <Phone className="h-4 w-4" /> Contact Us
             </a>
           </motion.div>
