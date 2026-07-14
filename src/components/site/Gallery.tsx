@@ -9,9 +9,9 @@ import blood from "@/assets/blood.jpg.asset.json";
 import { SectionHeading } from "./primitives";
 
 const ITEMS = [
-  { img: galleryLand, title: "Land Mapping", span: "row-span-2" },
+  { img: galleryLand, title: "Land Mapping", span: "sm:row-span-2" },
   { img: bigbro.url, title: "Road Survey", span: "" },
-  { img: galleryGis, title: "GIS Mapping", span: "row-span-2" },
+  { img: galleryGis, title: "GIS Mapping", span: "sm:row-span-2" },
   { img: yiii.url, title: "Construction Survey", span: "" },
   { img: hi.url, title: "Boundary Survey", span: "" },
   { img: blood.url, title: "Drone Survey", span: "" },
