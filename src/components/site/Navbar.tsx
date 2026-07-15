@@ -7,6 +7,7 @@ import { useTheme } from "@/hooks/use-theme";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>("#home");
   const { isDark, toggle } = useTheme();
 
   useEffect(() => {
@@ -16,12 +17,35 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const ids = NAV_LINKS.map((l) => l.href.replace("#", ""));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         scrolled ? "glass shadow-lg shadow-black/5" : "bg-transparent"
       }`}
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gold/70 transition-[width] duration-150"
+        style={{ width: typeof document !== "undefined" ? undefined : "0%" }}
+      />
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 lg:px-8">
         <a href="#home" className="flex min-w-0 items-center gap-3">
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-gold to-[oklch(0.62_0.12_80)] text-primary-foreground shadow-md">
@@ -37,9 +61,15 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="relative rounded-full px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-gold"
+              aria-current={active === l.href ? "page" : undefined}
+              className={`relative rounded-full px-3 py-2 text-sm font-medium transition-colors hover:text-gold ${
+                active === l.href ? "text-gold" : "text-foreground/80"
+              }`}
             >
               {l.label}
+              {active === l.href && (
+                <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gold" />
+              )}
             </a>
           ))}
         </div>
@@ -96,7 +126,10 @@ export function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-gold"
+                  aria-current={active === l.href ? "page" : undefined}
+                  className={`rounded-xl px-3 py-3 text-sm font-medium transition-colors hover:bg-secondary hover:text-gold ${
+                    active === l.href ? "bg-secondary text-gold" : "text-foreground/80"
+                  }`}
                 >
                   {l.label}
                 </a>
