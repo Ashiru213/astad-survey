@@ -8,10 +8,16 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
+  const [progress, setProgress] = useState(0);
   const { isDark, toggle } = useTheme();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -43,8 +49,8 @@ export function Navbar() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gold/70 transition-[width] duration-150"
-        style={{ width: typeof document !== "undefined" ? undefined : "0%" }}
+        className="pointer-events-none absolute left-0 top-0 h-0.5 bg-gradient-to-r from-gold to-[oklch(0.62_0.12_80)] transition-[width] duration-100"
+        style={{ width: `${progress}%` }}
       />
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 lg:px-8">
         <a href="#home" className="flex min-w-0 items-center gap-3">
