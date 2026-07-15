@@ -26,7 +26,7 @@ export function Gallery() {
           title={<>Field work in <span className="text-gradient-gold">focus</span></>}
           subtitle="A glimpse into the diverse surveying and mapping projects we deliver across Nigeria."
         />
-        <div className="mt-14 grid auto-rows-[220px] grid-cols-2 gap-4 lg:grid-cols-3">
+        <div className="mt-14 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[220px] sm:gap-4 lg:grid-cols-3">
           {ITEMS.map((it, i) => (
             <motion.figure
               key={i}
@@ -36,10 +36,10 @@ export function Gallery() {
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               className={`group relative overflow-hidden rounded-2xl ${it.span}`}
             >
-              <img src={it.img} alt={it.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <figcaption className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-primary/85 via-primary/20 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <ZoomIn className="mb-2 h-6 w-6 text-gold" />
-                <span className="font-display text-lg font-semibold text-primary-foreground">{it.title}</span>
+              <img src={it.img} alt={it.title} loading={i < 2 ? "eager" : "lazy"} decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <figcaption className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-primary/90 via-primary/40 to-transparent p-4 opacity-100 transition-opacity duration-300 sm:from-primary/85 sm:via-primary/20 sm:opacity-0 sm:group-hover:opacity-100">
+                <ZoomIn className="mb-2 hidden h-6 w-6 text-gold sm:block" />
+                <span className="font-display text-sm font-semibold text-primary-foreground sm:text-lg">{it.title}</span>
               </figcaption>
             </motion.figure>
           ))}
