@@ -1,4 +1,4 @@
-import { Award, CheckCircle2, Compass, ShieldCheck, Target } from "lucide-react";
+import { Award, CheckCircle2, Compass, ShieldCheck, Sparkles, Target } from "lucide-react";
 import bigbro from "@/assets/bigbro.jpg.asset.json";
 import mybro from "@/assets/mybro.jpg.asset.json";
 import { STATS } from "@/lib/site-data";
@@ -48,11 +48,28 @@ export function About() {
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal className="relative pb-10 pr-6 sm:pb-14 sm:pr-10">
-            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-              <img src={bigbro.url} alt="ASTAD surveyor operating a total station on-site" width={900} height={700} loading="lazy" className="w-full object-cover" />
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl ring-1 ring-gold/20">
+              <img
+                src={bigbro.url}
+                alt="ASTAD Survey licensed surveyor operating a robotic total station on a Nigerian construction site"
+                width={900}
+                height={700}
+                loading="lazy"
+                decoding="async"
+                className="w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
             </div>
             <div className="absolute bottom-0 right-0 w-32 overflow-hidden rounded-2xl border-4 border-background shadow-xl sm:w-56">
-              <img src={mybro.url} alt="ASTAD surveyor performing field data collection" width={900} height={800} loading="lazy" className="w-full object-cover" />
+              <img
+                src={mybro.url}
+                alt="ASTAD field team member collecting GNSS survey data"
+                width={900}
+                height={800}
+                loading="lazy"
+                decoding="async"
+                className="w-full object-cover"
+              />
             </div>
             <div className="glass absolute left-2 top-4 rounded-2xl px-4 py-3 shadow-lg sm:left-0 sm:top-8 sm:px-5">
               <p className="font-display text-2xl font-bold text-gold">10+ yrs</p>
@@ -61,6 +78,9 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.1}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
+              <Sparkles className="h-3.5 w-3.5" /> Licensed & Certified
+            </span>
             <h3 className="font-display text-2xl font-semibold sm:text-3xl">
               Turning complex ground realities into reliable spatial intelligence.
             </h3>
