@@ -1,10 +1,32 @@
-import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Send, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { CONTACT } from "@/lib/site-data";
+import { submitContact } from "@/lib/contact.functions";
 import { Reveal, SectionHeading } from "./primitives";
+import { toast } from "sonner";
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
+  const submit = useServerFn(submitContact);
+  const [sending, setSending] = useState(false);
+  const [reply, setReply] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "Land Survey", message: "" });
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    try {
+      const res = await submit({ data: form });
+      setReply(res.reply);
+      setForm({ name: "", phone: "", email: "", service: "Land Survey", message: "" });
+      toast.success("Message sent");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Could not send message");
+    } finally {
+      setSending(false);
+    }
+  }
   return (
     <section id="contact" className="relative py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -67,18 +89,16 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.1} center={false}>
-            <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-              className="glass flex h-full flex-col gap-4 rounded-3xl p-8"
-            >
+            <form onSubmit={onSubmit} className="glass flex h-full flex-col gap-4 rounded-3xl p-8">
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Full Name" name="name" placeholder="John Doe" />
-                <Field label="Phone" name="phone" placeholder="0700 000 0000" />
+                <Field label="Full Name" name="name" placeholder="John Doe" value={form.name} onChange={(v) => setForm((f) => ({ ...f, name: v }))} required />
+                <Field label="Phone" name="phone" placeholder="0700 000 0000" value={form.phone} onChange={(v) => setForm((f) => ({ ...f, phone: v }))} />
               </div>
-              <Field label="Email" name="email" type="email" placeholder="you@email.com" />
+              <Field label="Email" name="email" type="email" placeholder="you@email.com" value={form.email} onChange={(v) => setForm((f) => ({ ...f, email: v }))} required />
               <div>
                 <label className="mb-1.5 block text-sm font-medium" htmlFor="service">Service Needed</label>
-                <select id="service" name="service" className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold">
+                <select id="service" name="service" value={form.service} onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold">
                   <option>Land Survey</option>
                   <option>Engineering Survey</option>
                   <option>GIS Mapping</option>
@@ -88,12 +108,23 @@ export function Contact() {
               </div>
               <div>
                 <label className="mb-1.5 block text-sm font-medium" htmlFor="message">Message</label>
-                <textarea id="message" name="message" rows={4} placeholder="Tell us about your project..." className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold" />
+                <textarea id="message" name="message" rows={4} required value={form.message}
+                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                  placeholder="Tell us about your project..."
+                  className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold" />
               </div>
-              <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-primary shadow-lg shadow-gold/20 transition-transform hover:scale-[1.02]">
-                <Send className="h-4 w-4" /> {sent ? "Message Sent!" : "Send Message"}
+              <button type="submit" disabled={sending}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-primary shadow-lg shadow-gold/20 transition-transform hover:scale-[1.02] disabled:opacity-60">
+                <Send className="h-4 w-4" /> {sending ? "Sending…" : "Send Message"}
               </button>
-              {sent && <p className="text-center text-sm text-gold">Thank you! We'll be in touch shortly.</p>}
+              {reply && (
+                <div className="rounded-2xl border border-gold/30 bg-gold/5 p-4">
+                  <p className="flex items-center gap-2 text-xs font-semibold uppercase text-gold">
+                    <Sparkles className="h-3.5 w-3.5" /> AI reply from ASTAD
+                  </p>
+                  <p className="mt-2 whitespace-pre-wrap text-sm">{reply}</p>
+                </div>
+              )}
             </form>
           </Reveal>
         </div>
@@ -102,11 +133,16 @@ export function Contact() {
   );
 }
 
-function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
+function Field({ label, name, type = "text", placeholder, value, onChange, required }: {
+  label: string; name: string; type?: string; placeholder?: string;
+  value: string; onChange: (v: string) => void; required?: boolean;
+}) {
   return (
     <div>
       <label className="mb-1.5 block text-sm font-medium" htmlFor={name}>{label}</label>
-      <input id={name} name={name} type={type} placeholder={placeholder} className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold" />
+      <input id={name} name={name} type={type} placeholder={placeholder} value={value} required={required}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold" />
     </div>
   );
 }

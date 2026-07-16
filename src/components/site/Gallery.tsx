@@ -1,6 +1,8 @@
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import galleryGis from "@/assets/gallery-gis.jpg";
 import galleryLand from "@/assets/gallery-land.jpg";
 import bigbro from "@/assets/bigbro.jpg.asset.json";
@@ -9,17 +11,44 @@ import hi from "@/assets/hi.jpg.asset.json";
 import blood from "@/assets/blood.jpg.asset.json";
 import { SectionHeading } from "./primitives";
 
-const ITEMS = [
-  { img: galleryLand, title: "Land Mapping", desc: "Cadastral parcel measurement and boundary demarcation.", span: "sm:row-span-2" },
-  { img: bigbro.url, title: "Road Survey", desc: "Corridor alignment and route mapping for highway design.", span: "" },
-  { img: galleryGis, title: "GIS Mapping", desc: "Spatial data layers powering informed decisions.", span: "sm:row-span-2" },
-  { img: yiii.url, title: "Construction Survey", desc: "Precision setting-out for civil and structural works.", span: "" },
-  { img: hi.url, title: "Boundary Survey", desc: "Certified property boundary verification.", span: "" },
-  { img: blood.url, title: "Drone Survey", desc: "UAV aerial capture, orthophotos and 3D point clouds.", span: "" },
+type GalleryItem = { img: string; title: string; desc: string };
+
+const DEFAULT_ITEMS: GalleryItem[] = [
+  { img: galleryLand, title: "Land Mapping", desc: "Cadastral parcel measurement and boundary demarcation." },
+  { img: bigbro.url, title: "Road Survey", desc: "Corridor alignment and route mapping for highway design." },
+  { img: galleryGis, title: "GIS Mapping", desc: "Spatial data layers powering informed decisions." },
+  { img: yiii.url, title: "Construction Survey", desc: "Precision setting-out for civil and structural works." },
+  { img: hi.url, title: "Boundary Survey", desc: "Certified property boundary verification." },
+  { img: blood.url, title: "Drone Survey", desc: "UAV aerial capture, orthophotos and 3D point clouds." },
 ];
 
 export function Gallery() {
   const [active, setActive] = useState<number | null>(null);
+  const uploadsQ = useQuery({
+    queryKey: ["gallery-public"],
+    queryFn: async (): Promise<GalleryItem[]> => {
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("id, title, description, storage_path")
+        .order("sort_order", { ascending: true })
+        .order("created_at", { ascending: false });
+      if (error) return [];
+      const rows = await Promise.all(
+        (data ?? []).map(async (r) => {
+          const { data: signed } = await supabase.storage
+            .from("gallery")
+            .createSignedUrl(r.storage_path, 60 * 60);
+          return signed?.signedUrl
+            ? { img: signed.signedUrl, title: r.title, desc: r.description ?? "" }
+            : null;
+        }),
+      );
+      return rows.filter((r): r is GalleryItem => !!r);
+    },
+    staleTime: 60_000,
+  });
+  const ITEMS: GalleryItem[] = [...(uploadsQ.data ?? []), ...DEFAULT_ITEMS];
+
   const close = useCallback(() => setActive(null), []);
   const next = useCallback(() => setActive((i) => (i === null ? i : (i + 1) % ITEMS.length)), []);
   const prev = useCallback(() => setActive((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length)), []);
@@ -47,7 +76,7 @@ export function Gallery() {
           title={<>Field work in <span className="text-gradient-gold">focus</span></>}
           subtitle="A glimpse into the diverse surveying and mapping projects we deliver across Nigeria."
         />
-        <div className="mt-14 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[220px] sm:gap-4 lg:grid-cols-3">
+        <div className="mt-14 grid auto-rows-[280px] grid-cols-1 gap-4 sm:auto-rows-[220px] sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {ITEMS.map((it, i) => (
             <motion.figure
               key={i}
@@ -56,7 +85,7 @@ export function Gallery() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               onClick={() => setActive(i)}
-              className={`group relative cursor-zoom-in overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold ${it.span}`}
+              className="group relative cursor-zoom-in overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               tabIndex={0}
               onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActive(i)}
               role="button"
