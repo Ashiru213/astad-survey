@@ -8,7 +8,6 @@ import galleryLand from "@/assets/gallery-land.jpg";
 import bigbro from "@/assets/bigbro.jpg.asset.json";
 import mybro from "@/assets/mybro.jpg.asset.json";
 import yiii from "@/assets/yiii.jpg.asset.json";
-import hi from "@/assets/hi.jpg.asset.json";
 import blood from "@/assets/blood.jpg.asset.json";
 import { SectionHeading } from "./primitives";
 
