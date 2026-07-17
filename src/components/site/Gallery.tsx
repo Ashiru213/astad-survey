@@ -15,10 +15,10 @@ type GalleryItem = { img: string; title: string; desc: string };
 
 const DEFAULT_ITEMS: GalleryItem[] = [
   { img: galleryLand, title: "Land Mapping", desc: "Cadastral parcel measurement and boundary demarcation." },
-  { img: bigbro.url, title: "Road Survey", desc: "Corridor alignment and route mapping for highway design." },
+  { img: mybro.url, title: "Road Survey", desc: "Corridor alignment and route mapping for highway design." },
   { img: galleryGis, title: "GIS Mapping", desc: "Spatial data layers powering informed decisions." },
-  { img: yiii.url, title: "Construction Survey", desc: "Precision setting-out for civil and structural works." },
-  { img: hi.url, title: "Boundary Survey", desc: "Certified property boundary verification." },
+  { img: bigbro.url, title: "Construction Survey", desc: "Precision setting-out for civil and structural works." },
+  { img: yiii.url, title: "Boundary Survey", desc: "Certified property boundary verification." },
   { img: blood.url, title: "Drone Survey", desc: "UAV aerial capture, orthophotos and 3D point clouds." },
 ];
 
