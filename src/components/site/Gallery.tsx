@@ -77,7 +77,7 @@ export function Gallery() {
           title={<>Field work in <span className="text-gradient-gold">focus</span></>}
           subtitle="A glimpse into the diverse surveying and mapping projects we deliver across Nigeria."
         />
-        <div className="mt-14 grid auto-rows-[280px] grid-cols-1 gap-4 sm:auto-rows-[220px] sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        <div className="mt-14 grid auto-rows-[420px] grid-cols-1 gap-4 sm:auto-rows-[240px] sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {ITEMS.map((it, i) => (
             <motion.figure
               key={i}
