@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import galleryGis from "@/assets/gallery-gis.jpg";
 import galleryLand from "@/assets/gallery-land.jpg";
 import bigbro from "@/assets/bigbro.jpg.asset.json";
+import mybro from "@/assets/mybro.jpg.asset.json";
 import yiii from "@/assets/yiii.jpg.asset.json";
 import hi from "@/assets/hi.jpg.asset.json";
 import blood from "@/assets/blood.jpg.asset.json";
@@ -15,10 +16,10 @@ type GalleryItem = { img: string; title: string; desc: string };
 
 const DEFAULT_ITEMS: GalleryItem[] = [
   { img: galleryLand, title: "Land Mapping", desc: "Cadastral parcel measurement and boundary demarcation." },
-  { img: bigbro.url, title: "Road Survey", desc: "Corridor alignment and route mapping for highway design." },
+  { img: mybro.url, title: "Road Survey", desc: "Corridor alignment and route mapping for highway design." },
   { img: galleryGis, title: "GIS Mapping", desc: "Spatial data layers powering informed decisions." },
-  { img: yiii.url, title: "Construction Survey", desc: "Precision setting-out for civil and structural works." },
-  { img: hi.url, title: "Boundary Survey", desc: "Certified property boundary verification." },
+  { img: bigbro.url, title: "Construction Survey", desc: "Precision setting-out for civil and structural works." },
+  { img: yiii.url, title: "Boundary Survey", desc: "Certified property boundary verification." },
   { img: blood.url, title: "Drone Survey", desc: "UAV aerial capture, orthophotos and 3D point clouds." },
 ];
 
@@ -76,7 +77,7 @@ export function Gallery() {
           title={<>Field work in <span className="text-gradient-gold">focus</span></>}
           subtitle="A glimpse into the diverse surveying and mapping projects we deliver across Nigeria."
         />
-        <div className="mt-14 grid auto-rows-[280px] grid-cols-1 gap-4 sm:auto-rows-[220px] sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        <div className="mt-14 grid auto-rows-[420px] grid-cols-1 gap-4 sm:auto-rows-[240px] sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {ITEMS.map((it, i) => (
             <motion.figure
               key={i}
