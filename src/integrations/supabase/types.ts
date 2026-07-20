@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       contact_submissions: {
         Row: {
+          admin_reply: string | null
           ai_reply: string | null
           created_at: string
           email: string
@@ -23,9 +24,12 @@ export type Database = {
           message: string
           name: string
           phone: string | null
+          replied_at: string | null
           service: string | null
+          status: string
         }
         Insert: {
+          admin_reply?: string | null
           ai_reply?: string | null
           created_at?: string
           email: string
@@ -33,9 +37,12 @@ export type Database = {
           message: string
           name: string
           phone?: string | null
+          replied_at?: string | null
           service?: string | null
+          status?: string
         }
         Update: {
+          admin_reply?: string | null
           ai_reply?: string | null
           created_at?: string
           email?: string
@@ -43,7 +50,9 @@ export type Database = {
           message?: string
           name?: string
           phone?: string | null
+          replied_at?: string | null
           service?: string | null
+          status?: string
         }
         Relationships: []
       }
@@ -74,6 +83,80 @@ export type Database = {
           storage_path?: string
           title?: string
           uploaded_by?: string | null
+        }
+        Relationships: []
+      }
+      portfolio_project_images: {
+        Row: {
+          caption: string | null
+          created_at: string
+          id: string
+          project_id: string
+          sort_order: number
+          storage_path: string
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          project_id: string
+          sort_order?: number
+          storage_path: string
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          id?: string
+          project_id?: string
+          sort_order?: number
+          storage_path?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portfolio_project_images_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "portfolio_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portfolio_projects: {
+        Row: {
+          client: string | null
+          completion_date: string | null
+          cover_image_path: string | null
+          created_at: string
+          description: string | null
+          id: string
+          location: string | null
+          name: string
+          service: string | null
+          updated_at: string
+        }
+        Insert: {
+          client?: string | null
+          completion_date?: string | null
+          cover_image_path?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          name: string
+          service?: string | null
+          updated_at?: string
+        }
+        Update: {
+          client?: string | null
+          completion_date?: string | null
+          cover_image_path?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          name?: string
+          service?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
