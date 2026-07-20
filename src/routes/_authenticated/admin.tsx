@@ -1,13 +1,11 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import { LogOut, Upload, Trash2, Mail, ShieldAlert, Image as ImageIcon } from "lucide-react";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Legacy route — the admin experience now lives at /dashboard.
 export const Route = createFileRoute("/_authenticated/admin")({
   ssr: false,
-  component: AdminPage,
+  beforeLoad: () => {
+    throw redirect({ to: "/dashboard", replace: true });
+  },
 });
 
 function AdminPage() {
