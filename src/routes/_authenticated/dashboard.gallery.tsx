@@ -58,7 +58,7 @@ function GalleryManager() {
       toast.success("Image uploaded");
       setTitle(""); setDescription(""); setFile(null);
       qc.invalidateQueries({ queryKey: ["dashboard-gallery"] });
-      qc.invalidateQueries({ queryKey: ["site-gallery"] });
+      qc.invalidateQueries({ queryKey: ["gallery-public"] });
       qc.invalidateQueries({ queryKey: ["count", "gallery_images"] });
     },
     onError: (e) => toast.error(e instanceof Error ? e.message : "Upload failed"),
@@ -73,7 +73,7 @@ function GalleryManager() {
     onSuccess: () => {
       toast.success("Deleted");
       qc.invalidateQueries({ queryKey: ["dashboard-gallery"] });
-      qc.invalidateQueries({ queryKey: ["site-gallery"] });
+      qc.invalidateQueries({ queryKey: ["gallery-public"] });
       qc.invalidateQueries({ queryKey: ["count", "gallery_images"] });
     },
     onError: (e) => toast.error(e instanceof Error ? e.message : "Delete failed"),
